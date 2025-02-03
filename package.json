@@ -35,6 +35,11 @@
     "type": "git",
     "url": "git+https://github.com/adaltas/anartree.git"
   },
-  "scripts": {},
-  "type": "module"
+  "scripts": {
+    "prepare": "husky"
+  },
+  "type": "module",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
 }
