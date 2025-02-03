@@ -1,0 +1,40 @@
+{
+  "name": "anartree",
+  "version": "0.0.0",
+  "description": "Utilities functions to work with trees",
+  "main": "lib/index.js",
+  "keywords": [
+    "tree",
+    "utils",
+    "flatten",
+    "hierarchy"
+  ],
+  "author": "David Worms <david@adaltas.com> (https://www.adaltas.com)",
+  "bugs": {
+    "url": "https://github.com/adaltas/anartree/issues"
+  },
+  "engines": {
+    "node": ">= 18.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/anartree.esm.js"
+      },
+      "require": {
+        "default": "./dist/anartree.cjs.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/adaltas/anartree#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adaltas/anartree.git"
+  },
+  "scripts": {},
+  "type": "module"
+}
