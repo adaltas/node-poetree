@@ -17,29 +17,33 @@
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@eslint/core": "^0.11.0",
-    "@eslint/js": "^9.19.0",
+    "@eslint/js": "^9.20.0",
     "@types/eslint__js": "^8.42.3",
-    "eslint": "^9.19.0",
+    "@types/mocha": "^10.0.10",
+    "eslint": "^9.20.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-mocha": "^10.5.0",
     "eslint-plugin-prettier": "^5.2.3",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
-    "prettier": "^3.4.2",
+    "mocha": "^11.1.0",
+    "prettier": "^3.5.1",
+    "should": "^13.2.3",
+    "tsup": "^8.3.6",
+    "tsx": "^4.19.2",
+    "typedoc": "^0.27.7",
+    "typedoc-plugin-markdown": "^4.4.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.23.0"
+    "typescript-eslint": "^8.24.1"
   },
   "engines": {
     "node": ">= 18.0.0"
   },
   "exports": {
     ".": {
-      "import": {
-        "default": "./dist/anartree.esm.js"
-      },
-      "require": {
-        "default": "./dist/anartree.cjs.cjs"
-      }
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs"
     }
   },
   "files": [
@@ -51,15 +55,28 @@
     "*.js": "npm run lint:fix",
     "*.md": "prettier -w"
   },
+  "mocha": {
+    "inline-diffs": true,
+    "import": "tsx",
+    "reporter": "spec",
+    "recursive": true,
+    "timeout": 40000,
+    "throw-deprecation": true
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adaltas/poetree.git"
   },
   "scripts": {
+    "build": "tsup-node",
     "lint:check": "eslint",
     "lint:fix": "eslint --fix",
     "lint:staged": "npx lint-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "mocha 'test/**/*.{js,ts}'"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "mixme": "^2.0.1"
+  }
 }
