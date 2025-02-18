@@ -8,6 +8,12 @@ It works in Node.js and the web environments. The package is OSS and licensed un
 npm i poetree
 ```
 
+## Documentation
+
+### Function `tree`
+
+The `tree` function organize a flat array of documents into a document hierarchy.
+
 ## Contributors
 
 The project is sponsored by [Adaltas](https://www.adaltas.com) based in Paris, France. Adaltas offers support and consulting on distributed systems, big data and open source.
