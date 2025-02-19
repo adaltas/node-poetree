@@ -52,7 +52,7 @@
   "homepage": "https://github.com/adaltas/poetree#readme",
   "license": "MIT",
   "lint-staged": {
-    "*.js": "npm run lint:fix",
+    "*.ts": "npm run lint:fix",
     "*.md": "prettier -w"
   },
   "mocha": {
@@ -72,6 +72,7 @@
     "lint:check": "eslint",
     "lint:fix": "eslint --fix",
     "lint:staged": "npx lint-staged",
+    "lint:ts": "npx tsc --pretty --noEmit",
     "prepare": "husky",
     "test": "mocha 'test/**/*.{js,ts}'"
   },
