@@ -1,7 +1,7 @@
 {
   "name": "poetree",
   "version": "0.1.0",
-  "description": "Utilities functions to work with trees.",
+  "description": "Utilities functions to work with document trees.",
   "main": "lib/index.js",
   "keywords": [
     "tree",
