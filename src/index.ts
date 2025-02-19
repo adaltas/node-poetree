@@ -39,12 +39,12 @@ const tree = function <
   documents: T[],
   options: {
     property: U;
-    property_relative?: V;
+    relative?: V;
   },
 ): PoetreeBranch<T, U, V>[] {
   const property = options.property;
-  const relative = options.property_relative || property;
   const tree: PoetreeBranch<T, U, V>[] = [];
+  const relative = options.relative ?? property;
   let rootInit = false;
   let root: (string | number)[] = [];
   documents

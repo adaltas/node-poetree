@@ -14,7 +14,7 @@ describe("tree", function () {
     ];
     const doctree = tree(pages, {
       property: "slug",
-      property_relative: "slug",
+      relative: "slug",
     });
     // title should be undefined or string
     should(doctree[0]?.title === "a").be.true();
@@ -128,7 +128,7 @@ describe("tree", function () {
             slug: ["root", "parent_2", "child_1"],
           },
         ],
-        { property: "slug", property_relative: "slug_relative" },
+        { property: "slug", relative: "slug_relative" },
       ).should.eql([
         {
           title: "Root document",
@@ -190,7 +190,7 @@ describe("tree", function () {
             slug: ["root", "parent", "parent_1", "child_2"],
           },
         ],
-        { property: "slug", property_relative: "slug_relative" },
+        { property: "slug", relative: "slug_relative" },
       ).should.eql([
         {
           title: "Child 1",

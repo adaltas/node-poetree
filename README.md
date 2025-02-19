@@ -10,9 +10,15 @@ npm i poetree
 
 ## Documentation
 
-### Function `tree`
+### Function `tree(documents, options)`
 
 The `tree` function organize a flat array of documents into a document hierarchy.
+
+- `options.property (string)`  
+  The document property which stores the path used to organize the document hierarchy.
+
+- `options.relative (string, default to property)`  
+  Same as `property` but common path is discovered and strip-out from the relative path.
 
 ## Contributors
 
