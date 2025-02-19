@@ -17,6 +17,9 @@ The `tree` function organize a flat array of documents into a document hierarchy
 - `options.property (string)`  
   The document property which stores the path used to organize the document hierarchy.
 
+- `options.children (string)`  
+  The document property which stores the child documents when documents are organized as a tree. The value should not conflict with an existing document property.
+
 - `options.relative (string, default to property)`  
   Same as `property` but common path is discovered and strip-out from the relative path.
 

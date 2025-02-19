@@ -107,6 +107,32 @@ describe("tree", function () {
     });
   });
 
+  describe("children", function () {
+    it("custom value", function () {
+      tree(
+        [
+          { slug: ["a"], title: "a" },
+          { slug: ["b"], title: "b" },
+          { slug: ["b", "c"], title: "c" },
+        ],
+        { property: "slug", children: "documents" },
+      ).should.match([
+        { title: "a", slug: ["a"], documents: [] },
+        {
+          title: "b",
+          slug: ["b"],
+          documents: [
+            {
+              title: "c",
+              slug: ["b", "c"],
+              documents: [],
+            },
+          ],
+        },
+      ]);
+    });
+  });
+
   describe("holes in hierachy", function () {
     it("with root document", function () {
       tree(

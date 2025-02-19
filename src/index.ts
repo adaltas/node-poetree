@@ -1,7 +1,7 @@
 import { mutate } from "mixme";
 
-const getIndexInTree = <U extends string, V extends string>(
-  tree: PoetreeBranch<PoetreeDocument<U, V>, U, V>[],
+const getIndexInTree = <U extends string, X extends string, V extends string>(
+  tree: PoetreeBranch<PoetreeDocument<U, X, V>, U, X, V>[],
   property: U,
   el: string | number,
 ) => {
@@ -11,40 +11,46 @@ const getIndexInTree = <U extends string, V extends string>(
   }
 };
 
-type PoetreeDocument<U extends string, V extends string> = {
+type PoetreeDocument<U extends string, X extends string, V extends string> = {
   [P in U]: (string | number)[];
+} & {
+  [R in X]?: string[];
 } & {
   [Q in V]?: (string | number)[];
 };
 
 type PoetreeBranch<
-  T extends PoetreeDocument<U, V>,
+  T extends PoetreeDocument<U, X, V>,
   U extends string,
+  X extends string,
   V extends string,
 > = {
-  children: PoetreeBranch<T, U, V>[];
+  [key in X]: PoetreeBranch<T, U, X, V>[];
 } & {
   [key in U | V]: (string | number)[];
-} & Partial<Omit<T, U | V>>;
+} & Partial<Omit<T, U | X | V>>;
 
 /**
  * Organize document as a tree using slug and slug_relative attribute and
  * placing child documents inside a children attribute.
  */
 const tree = function <
-  T extends PoetreeDocument<U, V>,
+  T extends PoetreeDocument<U, X, V>,
   U extends string,
+  X extends string = "children",
   V extends string = U,
 >(
   documents: T[],
   options: {
     property: U;
+    children?: X;
     relative?: V;
   },
-): PoetreeBranch<T, U, V>[] {
+): PoetreeBranch<T, U, X, V>[] {
   const property = options.property;
-  const tree: PoetreeBranch<T, U, V>[] = [];
+  const children = options.children ?? "children";
   const relative = options.relative ?? property;
+  const tree: PoetreeBranch<T, U, X, V>[] = [];
   let rootInit = false;
   let root: (string | number)[] = [];
   documents
@@ -89,8 +95,8 @@ const tree = function <
           const newBranch = {
             [property]: propertyValue,
             [relative]: propertyRelativeValue,
-            children: [] as PoetreeBranch<T, U, V>[],
-          } as PoetreeBranch<T, U, V>;
+            [children]: [] as PoetreeBranch<T, U, X, V>[],
+          } as PoetreeBranch<T, U, X, V>;
           ltree.push(newBranch); // as PoetreeBranch<T, U, V>
         }
         // Document
@@ -98,7 +104,7 @@ const tree = function <
           mutate(ltree[treeIndex], document);
         } else {
           // Parent
-          ltree = ltree[treeIndex].children;
+          ltree = ltree[treeIndex][children as X];
         }
       }
     });
