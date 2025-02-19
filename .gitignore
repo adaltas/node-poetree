@@ -1,6 +1,7 @@
 .*
 /dist
 /node_modules
+!.release-please-manifest.json
 !.husky
 !.github
 !.gitignore
