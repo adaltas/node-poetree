@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/adaltas/node-poetree/compare/v0.1.0...v0.2.0) (2025-02-20)
+
+
+### Features
+
+* new children option ([b29ddb3](https://github.com/adaltas/node-poetree/commit/b29ddb33613198a5b48d3abfa8ce12dc93159484))
+* new sort function ([a62fb98](https://github.com/adaltas/node-poetree/commit/a62fb98fe6bd53b89a5647773d2377c9147888d7))
+
 ## 0.1.0 (2025-02-19)
 
 
