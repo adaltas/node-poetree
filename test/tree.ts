@@ -13,22 +13,22 @@ describe("tree", function () {
       { slug: ["b", "c"], title: "c" },
     ];
     const doctree = tree(pages, {
-      property: "slug",
+      slug: "slug",
       relative: "slug",
     });
     // title should be undefined or string
     should(doctree[0]?.title === "a").be.true();
   });
 
-  describe("property", function () {
-    it("property as string[]", function () {
+  describe("option `slug`", function () {
+    it("slug as string[]", function () {
       tree(
         [
           { slug: ["a"], title: "a" },
           { slug: ["b"], title: "b" },
           { slug: ["b", "c"], title: "c" },
         ],
-        { property: "slug" },
+        { slug: "slug" },
       ).should.match([
         { title: "a", slug: ["a"], children: [] },
         {
@@ -45,13 +45,13 @@ describe("tree", function () {
       ]);
     });
 
-    it("property as number[]", function () {
+    it("slug as number[]", function () {
       const pages = [
         { slug: [1], title: "a" },
         { slug: [2], title: "b" },
         { slug: [2, 3], title: "c" },
       ];
-      tree(pages, { property: "slug" }).should.match([
+      tree(pages, { slug: "slug" }).should.match([
         { title: "a", slug: [1], children: [] },
         {
           title: "b",
@@ -76,7 +76,7 @@ describe("tree", function () {
         { slug: ["a", "a"] },
         { slug: ["a", "b"] },
       ];
-      tree(pages, { property: "slug" }).should.match([
+      tree(pages, { slug: "slug" }).should.match([
         {
           slug: ["a"],
           children: [
@@ -115,7 +115,7 @@ describe("tree", function () {
           { slug: ["b"], title: "b" },
           { slug: ["b", "c"], title: "c" },
         ],
-        { property: "slug", children: "documents" },
+        { slug: "slug", children: "documents" },
       ).should.match([
         { title: "a", slug: ["a"], documents: [] },
         {
@@ -154,7 +154,7 @@ describe("tree", function () {
             slug: ["root", "parent_2", "child_1"],
           },
         ],
-        { property: "slug", relative: "slug_relative" },
+        { slug: "slug", relative: "slug_relative" },
       ).should.eql([
         {
           title: "Root document",
@@ -216,7 +216,7 @@ describe("tree", function () {
             slug: ["root", "parent", "parent_1", "child_2"],
           },
         ],
-        { property: "slug", relative: "slug_relative" },
+        { slug: "slug", relative: "slug_relative" },
       ).should.eql([
         {
           title: "Child 1",
