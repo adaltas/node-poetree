@@ -49,7 +49,7 @@ const sort = function <
   const slug = options.slug;
   const sort = options.sort;
   const conflict = options.conflict ?? false;
-  const slugSortMap = new Map<string, (string | number)[]>();
+  const slugSortMap = new Map<string, string | number>();
   return documents
     .map((document) => {
       const key = JSON.stringify(document[slug]);
@@ -58,7 +58,12 @@ const sort = function <
           `POETREE_CONFLICT: found conflicting document path \`${key}\`.`,
         );
       }
-      slugSortMap.set(key, sort ? document[sort] : document[slug].slice(-1));
+      slugSortMap.set(
+        key,
+        sort
+          ? (document[sort] as string | number)
+          : document[slug].slice(-1)[0],
+      );
       return document;
     })
     .sort((a, b) => {
