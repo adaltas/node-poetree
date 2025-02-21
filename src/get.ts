@@ -4,7 +4,7 @@ type GetDeep<SRC, SLUG> = SLUG extends [infer H, ...infer R]
     : undefined
   : SRC;
 
-type Doc<SLUG extends string[]> = SLUG extends [
+type Doc<SLUG extends (string | number)[]> = SLUG extends [
   infer H extends string,
   ...infer R extends string[],
 ]
@@ -13,7 +13,7 @@ type Doc<SLUG extends string[]> = SLUG extends [
     : Record<never, never>
   : unknown;
 
-export function get<T extends Doc<SLUG>, SLUG extends string[]>(
+export function get<T extends Doc<SLUG>, SLUG extends (string | number)[]>(
   document: T,
   slug: readonly [...SLUG],
 ): GetDeep<T, SLUG> {
