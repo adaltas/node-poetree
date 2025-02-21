@@ -107,4 +107,26 @@ describe("get", function () {
       testval.should.eql(8);
     });
   });
+
+  describe("defaultValue", function () {
+    it("unmatch index", function () {
+      const testval = get([[[2]]], [0, 1], "ok");
+      testval.should.eql("ok");
+    });
+
+    it("unmatch key", function () {
+      const test_a_x = get(
+        {
+          a: {
+            b: {
+              c: 2,
+            },
+          },
+        },
+        ["a", "x"],
+        "ok",
+      );
+      test_a_x.should.eql("ok");
+    });
+  });
 });
