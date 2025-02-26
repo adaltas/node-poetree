@@ -1,4 +1,5 @@
-import { tree } from "../src/index.js";
+import "should";
+import { tree } from "../src/tree.js";
 
 describe("tree option `slug`", function () {
   it("slug as string[]", function () {

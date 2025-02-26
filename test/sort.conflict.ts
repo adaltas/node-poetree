@@ -1,5 +1,5 @@
 import should from "should";
-import { sort } from "../src/index.js";
+import { sort } from "../src/sort.js";
 
 describe("sort option `conflig`", function () {
   it("detect collision with string", function () {

@@ -1,4 +1,5 @@
-import { sort } from "../src/index.js";
+import "should";
+import { sort } from "../src/sort.js";
 
 describe("sort option `slug`", function () {
   it("slug as string[]", function () {

@@ -1,5 +1,5 @@
 import should from "should";
-import { tree } from "../src/index.js";
+import { tree } from "../src/tree.js";
 
 describe("tree", function () {
   it("preserve types", function () {
