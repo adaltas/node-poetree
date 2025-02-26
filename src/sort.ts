@@ -11,6 +11,8 @@ export type PoetreeDocSort<
     ? { [Q in SORT]?: string | number }
     : Record<never, never>);
 
+export type PoetreeSortOptionPre<T> = (a: T, b: T) => 0 | -1 | 1;
+
 export function sort<
   T extends PoetreeDocSort<U, SORT>,
   U extends string,
@@ -21,6 +23,7 @@ export function sort<
     conflict?: boolean;
     slug: U;
     sort?: SORT;
+    pre?: PoetreeSortOptionPre<T>;
   },
 ) {
   const slug = options.slug;
@@ -53,6 +56,10 @@ export function sort<
       return document;
     })
     .sort((a, b) => {
+      if (options.pre !== undefined) {
+        const compare = options.pre(a, b);
+        if (compare === -1 || compare === 1) return compare;
+      }
       const slugA = a[slug].map(
         (item, i) =>
           slugSortMap.get(JSON.stringify(a[slug].slice(0, i + 1))) ?? item,

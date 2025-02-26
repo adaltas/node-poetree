@@ -48,6 +48,9 @@ The `sort` function orders a flatten list of documents by slugs and an optional 
 - `options.sort (string, optional)`  
   An optional document property which stores an attribute used for sorting instead of using the slug last element by default.
 
+- `options.pre ((a, b) => 0 | -1 | 1, optional)`
+  User defined function executed. The function is expected to return `-1` or `1` to affect sorting or `0` to not affect sorting.
+
 ## Contributors
 
 The project is sponsored by [Adaltas](https://www.adaltas.com) based in Paris, France. Adaltas offers support and consulting on distributed systems, big data and open source.

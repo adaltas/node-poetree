@@ -17,7 +17,7 @@ const getIndexInTree = <
   }
 };
 
-type PoetreeBranch<
+export type PoetreeBranch<
   T extends PoetreeDocSort<U, SORT>,
   U extends string,
   X extends string,
@@ -47,6 +47,7 @@ export function tree<
     children?: X;
     relative?: V;
     sort?: SORT;
+    // pre?: OptionPreFunction<T>;
   },
 ): PoetreeBranch<T, U, X, V, SORT>[] {
   const slug = options.slug;
@@ -59,6 +60,7 @@ export function tree<
     slug: slug,
     conflict: options.conflict,
     sort: options.sort,
+    // pre: options.pre,
   })
     // Find shared trunk
     .map((document) => {
