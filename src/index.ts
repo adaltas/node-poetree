@@ -1,4 +1,5 @@
 import { mutate } from "mixme";
+import { get, PoetreeDocGet } from "./get";
 
 const getIndexInTree = <
   U extends string,
@@ -16,18 +17,23 @@ const getIndexInTree = <
   }
 };
 
-type PoetreeDocument<U extends string, SORT extends string | undefined> = {
-  [P in U]: (string | number)[];
-} & (SORT extends string
-  ? { [Q in SORT]?: string | number }
-  : Record<never, never>);
+type PoetreeDocument<
+  SLUG extends string,
+  SORT extends string | string[] | undefined,
+> = {
+  [P in SLUG]: (string | number)[];
+} & (SORT extends string[]
+  ? PoetreeDocGet<SORT>
+  : SORT extends string
+    ? { [Q in SORT]?: string | number }
+    : Record<never, never>);
 
 type PoetreeBranch<
   T extends PoetreeDocument<U, SORT>,
   U extends string,
   X extends string,
   V extends string,
-  SORT extends string | undefined,
+  SORT extends string | string[] | undefined,
 > = {
   [key in X]: PoetreeBranch<T, U, X, V, SORT>[];
 } & {
@@ -37,7 +43,7 @@ type PoetreeBranch<
 const sort = function <
   T extends PoetreeDocument<U, SORT>,
   U extends string,
-  SORT extends string | undefined,
+  SORT extends string | string[] | undefined,
 >(
   documents: T[],
   options: {
@@ -47,7 +53,12 @@ const sort = function <
   },
 ) {
   const slug = options.slug;
-  const sort = options.sort;
+  const sort =
+    options.sort === undefined
+      ? undefined
+      : Array.isArray(options.sort)
+        ? options.sort
+        : [options.sort];
   const conflict = options.conflict ?? false;
   const slugSortMap = new Map<string, string | number>();
   return documents
@@ -60,8 +71,12 @@ const sort = function <
       }
       slugSortMap.set(
         key,
-        sort
-          ? (document[sort] as string | number)
+        sort !== undefined
+          ? (get(
+              document,
+              sort as (string | number)[],
+              document[slug].slice(-1)[0],
+            ) as string | number)
           : document[slug].slice(-1)[0],
       );
       return document;
@@ -171,4 +186,5 @@ const tree = function <
   return tree;
 };
 
-export { sort, tree };
+export type { PoetreeDocGet };
+export { get, sort, tree };

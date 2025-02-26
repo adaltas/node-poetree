@@ -144,6 +144,27 @@ describe("utils.sort", function () {
         { slug: ["b", "d"] },
       ]);
     });
+
+    it("defined as an array", function () {
+      sort(
+        [
+          { slug: ["b", "d"] },
+          { slug: ["b"], data: { sort: "a" } },
+          { slug: ["c", "d"] },
+          { slug: ["c"], data: { sort: 1 } },
+          { slug: ["a", "d"] },
+          { slug: ["a"], data: { sort: 3 } },
+        ],
+        { slug: "slug", sort: ["data", "sort"] },
+      ).should.eql([
+        { slug: ["c"], data: { sort: 1 } },
+        { slug: ["c", "d"] },
+        { slug: ["a"], data: { sort: 3 } },
+        { slug: ["a", "d"] },
+        { slug: ["b"], data: { sort: "a" } },
+        { slug: ["b", "d"] },
+      ]);
+    });
   });
 
   describe("option `conflict`", function () {

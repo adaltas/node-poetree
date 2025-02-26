@@ -3,12 +3,17 @@ import { get } from "../src/get.js";
 
 describe("get", function () {
   describe("from array", function () {
-    it("root property does not exist", function () {
+    it("root index on empty array", function () {
+      const testval = get([], [0, 0]);
+      should(testval).eql(undefined);
+    });
+
+    it("root index does not exist", function () {
       const test_x = get([[[2]]], [1]);
       should(test_x).be.Undefined();
     });
 
-    it("child property does not exists", function () {
+    it("child index does not exists", function () {
       const test_x = get([[[2]]], [0, 1]);
       should(test_x).be.Undefined();
     });
@@ -30,6 +35,11 @@ describe("get", function () {
   });
 
   describe("from object", function () {
+    it("root property on empty object", function () {
+      const testval = get({}, ["data", "sort"]);
+      should(testval).eql(undefined);
+    });
+
     it("root property does not exist", function () {
       const test_x = get(
         {
@@ -127,6 +137,16 @@ describe("get", function () {
         "ok",
       );
       test_a_x.should.eql("ok");
+    });
+
+    it("root index does not exists", function () {
+      const testval = get([], [0, 0], "d");
+      testval.should.eql("d");
+    });
+
+    it("root property does not exists", function () {
+      const testval = get({}, ["data", "sort"], "d");
+      testval.should.eql("d");
     });
   });
 });
