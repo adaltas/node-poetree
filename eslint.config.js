@@ -1,19 +1,18 @@
 import globals from "globals";
 import js from "@eslint/js";
-import ts from "typescript-eslint"; // TS only
+import ts from "typescript-eslint";
 import mocha from "eslint-plugin-mocha";
-import prettier from "eslint-plugin-prettier/recommended";
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   {
     ignores: ["dist/**"],
-    // Monorepo: ignores: ["**/dist/**"],
   },
   {
-    languageOptions: { globals: { ...globals.node } },
+    files: ["**/*.{js,mjs,cjs,ts}"],
   },
+  { languageOptions: { globals: globals.node } },
   js.configs.recommended,
-  ...ts.configs.recommended, // TS only
+  ...ts.configs.recommended,
   mocha.configs.flat.recommended,
-  prettier,
 ];

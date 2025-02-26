@@ -13,17 +13,17 @@
   "bugs": {
     "url": "https://github.com/adaltas/poetree/issues"
   },
+  "dependencies": {
+    "mixme": "^2.0.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
-    "@eslint/core": "^0.11.0",
     "@eslint/js": "^9.20.0",
-    "@types/eslint__js": "^8.42.3",
     "@types/mocha": "^10.0.10",
     "eslint": "^9.20.1",
-    "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-mocha": "^10.5.0",
-    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "mocha": "^11.1.0",
@@ -76,8 +76,5 @@
     "prepare": "husky",
     "test": "mocha 'test/**/*.{js,ts}'"
   },
-  "type": "module",
-  "dependencies": {
-    "mixme": "^2.0.2"
-  }
+  "type": "module"
 }
