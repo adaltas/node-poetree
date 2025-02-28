@@ -13,18 +13,14 @@ describe("sort option `slug`", function () {
         { slug: ["path", "a_dir", "article_2"] },
       ],
       { slug: "slug" },
-    )
-      .map((document) => ({
-        slug: document.slug,
-      }))
-      .should.eql([
-        { slug: [] },
-        { slug: ["path", "a_dir"] },
-        { slug: ["path", "a_dir", "article_2"] },
-        { slug: ["path", "a_dir", "article_4"] },
-        { slug: ["path", "a_dir", "article_5"] },
-        { slug: ["path", "b_dir", "article_3"] },
-      ]);
+    ).should.eql([
+      { slug: [] },
+      { slug: ["path", "a_dir"] },
+      { slug: ["path", "a_dir", "article_2"] },
+      { slug: ["path", "a_dir", "article_4"] },
+      { slug: ["path", "a_dir", "article_5"] },
+      { slug: ["path", "b_dir", "article_3"] },
+    ]);
   });
 
   it("slug as number[]", function () {
@@ -38,18 +34,14 @@ describe("sort option `slug`", function () {
         { slug: [2, 2, 2] },
       ],
       { slug: "slug" },
-    )
-      .map((document) => ({
-        slug: document.slug,
-      }))
-      .should.eql([
-        { slug: [] },
-        { slug: [2, 2] },
-        { slug: [2, 2, 2] },
-        { slug: [2, 2, 6] },
-        { slug: [2, 2, 8] },
-        { slug: [2, 4, 4] },
-      ]);
+    ).should.eql([
+      { slug: [] },
+      { slug: [2, 2] },
+      { slug: [2, 2, 2] },
+      { slug: [2, 2, 6] },
+      { slug: [2, 2, 8] },
+      { slug: [2, 4, 4] },
+    ]);
   });
 
   it("slug as (string|number)[]", function () {
