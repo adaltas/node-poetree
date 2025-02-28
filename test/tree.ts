@@ -7,12 +7,12 @@ describe("tree", function () {
       slug: string[];
       title: string;
     }
-    const pages: DocType[] = [
+    const documents: DocType[] = [
       { slug: ["a"], title: "a" },
       { slug: ["b"], title: "b" },
       { slug: ["b", "c"], title: "c" },
     ];
-    const doctree = tree(pages, {
+    const doctree = tree(documents, {
       slug: "slug",
       relative: "slug",
     });

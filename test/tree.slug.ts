@@ -27,12 +27,12 @@ describe("tree option `slug`", function () {
   });
 
   it("slug as number[]", function () {
-    const pages = [
+    const documents = [
       { slug: [1], title: "a" },
       { slug: [2], title: "b" },
       { slug: [2, 3], title: "c" },
     ];
-    tree(pages, { slug: "slug" }).should.match([
+    tree(documents, { slug: "slug" }).should.match([
       { title: "a", slug: [1], children: [] },
       {
         title: "b",
@@ -49,7 +49,7 @@ describe("tree option `slug`", function () {
   });
 
   it("with multiple parent directories", function () {
-    const pages = [
+    const documents = [
       { slug: ["a"] },
       { slug: ["b"] },
       { slug: ["b", "a"] },
@@ -57,7 +57,7 @@ describe("tree option `slug`", function () {
       { slug: ["a", "a"] },
       { slug: ["a", "b"] },
     ];
-    tree(pages, { slug: "slug" }).should.match([
+    tree(documents, { slug: "slug" }).should.match([
       {
         slug: ["a"],
         children: [
